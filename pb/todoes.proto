@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+package todoes;
+
+service Todoes{
+  rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse){}
+  rpc GetTodos(google.protobuf.Empty) returns (GetTodoResponse){}
+  rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse){}
+  rpc UpdateTodo(UpdateTodoRequest) returns (UpdateTodoResponse){}
+  rpc SeTodoExpirationTimeoutTodo(SeTodoExpirationTimeoutTodoRequest) returns (SeTodoExpirationTimeoutTodoResponse){}
+}
+
+message CreateTodoResponse{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message CreateTodoRequest{
+  string message = 1;
+}
+
+message DeleteTodoResponse{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message DeleteTodoRequest{
+  int32 idTodo = 1;
+  int64 deadline = 2;
+}
+
+message UpdateTodoResponse{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message UpdateTodoRequest{
+  int32 idTodo = 1;
+  string Message = 2;
+}
+
+message GetTodoResponse{
+  int32 code = 1;
+  bytes msg = 2;
+}
+
+message GetTodoRequest{}
+
+message SeTodoExpirationTimeoutTodoResponse{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message SeTodoExpirationTimeoutTodoRequest{
+  int32 idTodo = 1;
+  int64 deadline = 2;
+}
